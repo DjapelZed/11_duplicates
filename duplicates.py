@@ -33,19 +33,21 @@ def get_duplicates(path):
     return get_duplicates_paths(files_list)
 
 
-if __name__ == '__main__':
+def print_duplicates(path):
     try:
-        user_path = input('Directory path: ')
-        duplicates = get_duplicates(user_path)
+        duplicates = get_duplicates(path)
         if duplicates:
             for block_of_duplicates in duplicates:
                 print('Name:', block_of_duplicates[0][1], 'Size:', block_of_duplicates[0][2], 'byte')
                 print('Duplicates:')
                 for duplicate in block_of_duplicates:
                     print(duplicate[0])
-
     except PermissionError:
         print('Permission error!')
     except FileNotFoundError:
         print('Path not found!')
     input('Press enter')
+
+if __name__ == '__main__':
+    user_path = input('Directory path: ')
+    print_duplicates(user_path)
