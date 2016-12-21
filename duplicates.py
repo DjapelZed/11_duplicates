@@ -43,8 +43,9 @@ if __name__ == '__main__':
                 print('Duplicates:')
                 for duplicate in block_of_duplicates:
                     print(duplicate[0])
-                print()
+
     except PermissionError:
         print('Permission error!')
     except FileNotFoundError:
         print('Path not found!')
+    input('Press enter')
