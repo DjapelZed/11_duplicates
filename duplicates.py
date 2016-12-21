@@ -3,17 +3,12 @@ import os
 
 def get_files_in_path(path):
     files_list = list()
-    try:
-        for entry in os.scandir(path):
-            if entry.is_file(follow_symlinks=False):
-                file_statistic = (entry.name, entry.stat().st_size, entry.path)
-                files_list.append(file_statistic)
-            elif entry.is_dir(follow_symlinks=False):
-                files_list.extend(get_files_in_path(entry.path))
-    except PermissionError:
-        print('Permission error!')
-    except FileNotFoundError:
-        print('Path not found!')
+    for entry in os.scandir(path):
+        if entry.is_file(follow_symlinks=False):
+            file_statistic = (entry.name, entry.stat().st_size, entry.path)
+            files_list.append(file_statistic)
+        elif entry.is_dir(follow_symlinks=False):
+            files_list.extend(get_files_in_path(entry.path))
     return files_list
 
 
