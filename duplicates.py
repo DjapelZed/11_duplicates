@@ -2,7 +2,7 @@ import os
 
 
 def get_files_in_path(path):
-    files_list = list()
+    files_list = []
     for entry in os.scandir(path):
         if entry.is_file(follow_symlinks=False):
             file_statistic = (entry.name, entry.stat().st_size, entry.path)
@@ -17,9 +17,9 @@ def are_files_duplicates(file_statistic1, file_statistic2):
 
 
 def get_duplicates_paths(files_list):
-    duplicates = list()
+    duplicates = []
     for file_statistic1_num, file_statistic1 in enumerate(files_list):
-        current_file_duplicates = list()
+        current_file_duplicates = []
         for file_statistic2 in files_list[file_statistic1_num:]:
             if are_files_duplicates(file_statistic1, file_statistic2):
                 current_file_duplicates.append(file_statistic2)
